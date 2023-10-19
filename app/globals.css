@@ -78,3 +78,7 @@ html, body, :root {
     @apply bg-background text-foreground;
   }
 }
+
+.box {
+  @apply border p-5 rounded-xl bg-gray-200 dark:bg-gray-900
+}

@@ -34,7 +34,6 @@ export function DateRange() {
                initialDate={startToDate}
                onChange={(date: Date) => setStart(formatDate(date))}
             />
-            {start && start}
          </div>
          <div>
             <h3 className="mb-1 font-bold text-sm text-muted-foreground">
@@ -44,7 +43,6 @@ export function DateRange() {
                initialDate={finalToDate}
                onChange={(date: Date) => setFinal(formatDate(date))}
             />
-            {final && final}
          </div>
       </div>
    );
