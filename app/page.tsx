@@ -5,7 +5,7 @@ import { DataContextProvider } from "@/contexts/data-context";
 
 export default function Home() {
    return (
-      <div className="md:flex gap-x-5 h-full">
+      <div className="md:flex gap-x-3 h-full">
          <DataContextProvider>
             <div className="hidden md:block">
                <Sidenav />

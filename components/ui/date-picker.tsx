@@ -12,9 +12,16 @@ import {
    PopoverContent,
    PopoverTrigger,
 } from "@/components/ui/popover";
+import { useData } from "@/contexts/data-context";
 
-export function DatePicker({ onChange }: { onChange: (date: Date) => void }) {
-   const [date, setDate] = React.useState<Date>();
+type IDatePicker = {
+   initialDate: Date;
+   onChange: (date: Date) => void;
+};
+
+export function DatePicker({ initialDate, onChange }: IDatePicker) {
+   const [date, setDate] = React.useState<Date | undefined>(initialDate);
+   const { start, final } = useData();
 
    React.useEffect(() => {
       if (date) {
@@ -22,22 +29,26 @@ export function DatePicker({ onChange }: { onChange: (date: Date) => void }) {
       }
    }, [date]);
 
+   React.useEffect(() => {
+      setDate(initialDate);
+   }, [start, final]);
+
    return (
       <Popover>
          <PopoverTrigger asChild>
             <Button
                variant={"outline"}
                className={cn(
-                  "w-[240px] justify-start text-left font-normal",
+                  "w-[240px] justify-between text-left font-normal rounded-full",
                   !date && "text-muted-foreground"
                )}
             >
-               <CalendarIcon className="mr-2 h-4 w-4" />
                {date ? (
                   format(date, "dd/MM/yyyy")
                ) : (
                   <span>Selecione uma data</span>
                )}
+               <CalendarIcon className="h-4 w-4" />
             </Button>
          </PopoverTrigger>
          <PopoverContent className="w-auto p-0">
