@@ -36,7 +36,7 @@ export function MonthBtn({ n }: { n: number }) {
    return (
       <Button
          variant="secondary"
-         className="capitalize rounded-full font-medium"
+         className="capitalize rounded-full font-medium hover:scale-105 active:scale-100"
          onClick={() => setMonth(n)}
       >
          {monthName(n)}
