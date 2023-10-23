@@ -3,7 +3,7 @@ export type Sales = {
    nome: string;
    preco: number;
    status: "pago" | "processando" | "falha";
-   pagamento: "boleto" | "cartao" | "cartao";
+   pagamento: "boleto" | "cartao" | "pix";
    data: string;
    parcelas: number | null;
 };

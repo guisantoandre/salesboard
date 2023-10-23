@@ -1,3 +1,5 @@
+"use client";
+
 import { useData } from "@/contexts/data-context";
 
 export function SalesSummary() {
@@ -8,8 +10,10 @@ export function SalesSummary() {
    return (
       <div className="flex flex-wrap gap-5">
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-xl">Vendas</h2>
-            <span className="block font-semibold">
+            <h2 className="font-semibold text-lg text-muted-foreground">
+               Vendas
+            </h2>
+            <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status !== "falha")
                   .reduce((acc, item) => acc + item.preco, 0)
@@ -20,8 +24,10 @@ export function SalesSummary() {
             </span>
          </div>
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-xl">Recebido</h2>
-            <span className="block font-semibold">
+            <h2 className="font-semibold text-lg text-muted-foreground">
+               Recebidos
+            </h2>
+            <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status === "pago")
                   .reduce((acc, item) => acc + item.preco, 0)
@@ -32,8 +38,10 @@ export function SalesSummary() {
             </span>
          </div>
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-xl">Processando</h2>
-            <span className="block font-semibold">
+            <h2 className="font-semibold text-lg text-muted-foreground">
+               Processando
+            </h2>
+            <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status === "processando")
                   .reduce((acc, item) => acc + item.preco, 0)

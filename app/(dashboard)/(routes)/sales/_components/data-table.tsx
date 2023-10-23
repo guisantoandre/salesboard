@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +8,11 @@ import { Input } from "@/components/ui/input";
 import {
    ColumnDef,
    ColumnFiltersState,
+   SortingState,
    flexRender,
    getCoreRowModel,
    getFilteredRowModel,
+   getSortedRowModel,
    getPaginationRowModel,
    useReactTable,
 } from "@tanstack/react-table";
@@ -23,6 +25,7 @@ import {
    TableHeader,
    TableRow,
 } from "@/components/ui/table";
+import { Search } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -35,7 +38,13 @@ export function DataTable<TData, TValue>({
    data,
    filterKey,
 }: DataTableProps<TData, TValue>) {
-   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+      []
+   );
+   const [globalFilter, setGlobalFilter] = React.useState("");
+   const [sorting, setSorting] = React.useState<SortingState>([]);
+
+   console.log(sorting);
 
    const table = useReactTable({
       data,
@@ -43,25 +52,35 @@ export function DataTable<TData, TValue>({
       getCoreRowModel: getCoreRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
       onColumnFiltersChange: setColumnFilters,
+      onGlobalFilterChange: setGlobalFilter,
       getFilteredRowModel: getFilteredRowModel(),
+      onSortingChange: setSorting,
+      getSortedRowModel: getSortedRowModel(),
       state: {
+         sorting,
          columnFilters,
+         globalFilter,
       },
    });
 
    return (
       <div>
-         <div className="flex items-center py-4">
+         <div className="flex items-center py-4 relative">
             <Input
-               placeholder="Pesquisar por vendedor"
-               value={
-                  (table.getColumn(filterKey)?.getFilterValue() as string) ?? ""
-               }
-               onChange={(event) =>
-                  table.getColumn(filterKey)?.setFilterValue(event.target.value)
-               }
-               className="max-w-sm"
+               // *** THIS CODE RUNS JUST FOR A SINGLE FILTER COLUMN ***
+               // placeholder="Pesquisar por vendedor..."
+               // value={
+               //    (table.getColumn(filterKey)?.getFilterValue() as string) ?? ""
+               // }
+               // onChange={(event) =>
+               //    table.getColumn(filterKey)?.setFilterValue(event.target.value)
+               // }
+               value={globalFilter ?? ""}
+               onChange={(event) => setGlobalFilter(event.target.value)}
+               placeholder="Pesquisar venda(s)..."
+               className="max-w-sm pl-10"
             />
+            <Search className="absolute left-[10px] top-[28px] h-4 w-4 text-muted-foreground" />
          </div>
          <div className="rounded-md border">
             <Table>
@@ -114,13 +133,16 @@ export function DataTable<TData, TValue>({
             </Table>
          </div>
          <div className="flex items-center justify-end space-x-2 py-4">
+            <div className="flex-1 text-sm text-muted-foreground">
+               Total de vendas: {table.getFilteredRowModel().rows.length}
+            </div>
             <Button
                variant="outline"
                size="sm"
                onClick={() => table.previousPage()}
                disabled={!table.getCanPreviousPage()}
             >
-               Previous
+               Anterior
             </Button>
             <Button
                variant="outline"
@@ -128,7 +150,7 @@ export function DataTable<TData, TValue>({
                onClick={() => table.nextPage()}
                disabled={!table.getCanNextPage()}
             >
-               Next
+               Próxima
             </Button>
          </div>
       </div>

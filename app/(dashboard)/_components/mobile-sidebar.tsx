@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Sidenav } from "@/components/sidenav";
+import { Sidenav } from "@/app/(dashboard)/_components/sidenav";
 
 export function MobileSidebar() {
    return (

@@ -1,4 +1,6 @@
-import { MonthBtn } from "@/components/month-btn";
+"use client";
+
+import { MonthBtn } from "@/app/(dashboard)/_components/month-btn";
 
 export function Months() {
    return (

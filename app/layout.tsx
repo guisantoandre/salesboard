@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@/providers/theme-provider";
+import { inter } from "@/fonts/fonts";
+import { Header } from "@/app/(dashboard)/_components/header";
+import { Sidenav } from "@/app/(dashboard)/_components/sidenav";
+import { DataContextProvider } from "@/contexts/data-context";
+import { DateRange } from "@/app/(dashboard)/_components/date-range";
+import { Months } from "@/app/(dashboard)/_components/months";
 
 export const metadata: Metadata = {
    title: "Dashboard de vendas",
@@ -17,13 +21,29 @@ export default function RootLayout({
 }) {
    return (
       <html lang="pt-BR" suppressHydrationWarning>
-         <body className={`${inter.className} md:p-5`}>
+         <body
+            className={`${inter.variable} max-w-[1400px] !m-auto font-inter md:p-5`}
+         >
             <ThemeProvider
                attribute="class"
                defaultTheme="dark"
                enableSystem={false}
             >
-               {children}
+               <DataContextProvider>
+                  <div className="hidden md:block md:fixed md:top-5 md:bottom-5">
+                     <Sidenav />
+                  </div>
+                  <div className="md:w-full md:pl-60">
+                     <Header />
+                  </div>
+                  <div className="pt-24 pr-5 pl-5 md:pr-0 md:pt-0 md:pl-64 space-y-5">
+                     <div className="box space-y-4">
+                        <DateRange />
+                        <Months />
+                     </div>
+                  </div>
+                  {children}
+               </DataContextProvider>
             </ThemeProvider>
          </body>
       </html>
