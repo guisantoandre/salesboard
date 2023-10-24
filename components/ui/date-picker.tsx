@@ -39,7 +39,7 @@ export function DatePicker({ initialDate, onChange }: IDatePicker) {
             <Button
                variant={"outline"}
                className={cn(
-                  "w-[240px] justify-between text-left font-normal rounded-full",
+                  "w-[240px] justify-between text-left font-normal rounded-md",
                   !date && "text-muted-foreground"
                )}
             >
