@@ -19,7 +19,7 @@ const routesLinks = [
 export function NavLinks() {
    return (
       <nav>
-         <h1 className="font-bold text-xl mb-10">SalesBoard</h1>
+         <h1 className="font-bold text-xl p-6 mb-5">SalesBoard</h1>
          <ul>
             <li>
                {routesLinks.map((route) => (

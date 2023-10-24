@@ -15,7 +15,7 @@ export const columns: ColumnDef<Sales>[] = [
       cell: ({ row }) => {
          return (
             <Link
-               href="#"
+               href={`/sales/${row.original.id}`}
                className={`${noto_sans_mono.variable} font-mono text-black/70 dark:text-white/80 hover:underline`}
             >
                {row.original.id}

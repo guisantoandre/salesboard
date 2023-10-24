@@ -10,9 +10,7 @@ export function SalesSummary() {
    return (
       <div className="flex flex-wrap gap-5">
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-lg text-muted-foreground">
-               Vendas
-            </h2>
+            <h2 className="font-semibold text-muted-foreground">Vendas</h2>
             <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status !== "falha")
@@ -24,9 +22,7 @@ export function SalesSummary() {
             </span>
          </div>
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-lg text-muted-foreground">
-               Recebidos
-            </h2>
+            <h2 className="font-semibold text-muted-foreground">Recebidos</h2>
             <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status === "pago")
@@ -38,9 +34,7 @@ export function SalesSummary() {
             </span>
          </div>
          <div className="box space-y-3 flex-1">
-            <h2 className="font-semibold text-lg text-muted-foreground">
-               Processando
-            </h2>
+            <h2 className="font-semibold text-muted-foreground">Processando</h2>
             <span className="block font-semibold text-xl">
                {data
                   .filter((i) => i.status === "processando")

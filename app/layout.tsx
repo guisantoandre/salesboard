@@ -10,7 +10,6 @@ import { DateRange } from "@/app/(dashboard)/_components/date-range";
 import { Months } from "@/app/(dashboard)/_components/months";
 
 export const metadata: Metadata = {
-   title: "Dashboard de vendas",
    description: "Dashboard de vendas utilizando API da Origamid",
 };
 
@@ -22,7 +21,7 @@ export default function RootLayout({
    return (
       <html lang="pt-BR" suppressHydrationWarning>
          <body
-            className={`${inter.variable} max-w-[1400px] !m-auto font-inter md:p-5`}
+            className={`${inter.variable} font-inter max-w-[1400px] !m-auto p-6`}
          >
             <ThemeProvider
                attribute="class"
@@ -33,10 +32,10 @@ export default function RootLayout({
                   <div className="hidden md:block md:fixed md:top-5 md:bottom-5">
                      <Sidenav />
                   </div>
-                  <div className="md:w-full md:pl-60">
+                  <div>
                      <Header />
                   </div>
-                  <div className="pt-24 pr-5 pl-5 md:pr-0 md:pt-0 md:pl-64 space-y-5">
+                  <div className="pt-20 md:pt-0 md:pl-64 space-y-5">
                      <div className="box space-y-4">
                         <DateRange />
                         <Months />

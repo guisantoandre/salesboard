@@ -3,9 +3,11 @@ import { ModeToggle } from "./mode-toggle";
 
 export function Sidenav() {
    return (
-      <div className="flex flex-col justify-between h-full w-60 border rounded-xl p-5 bg-gray-200 dark:bg-gray-900">
+      <div className="flex flex-col justify-between h-full w-60 border rounded-md bg-gray-100 dark:bg-stone-900">
          <NavLinks />
-         <ModeToggle />
+         <div className="p-6">
+            <ModeToggle />
+         </div>
       </div>
    );
 }
