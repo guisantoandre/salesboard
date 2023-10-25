@@ -35,12 +35,7 @@ export default function RootLayout({
                   <div>
                      <Header />
                   </div>
-                  <div className="pt-20 md:pt-0 md:pl-64 space-y-5">
-                     <div className="box space-y-4">
-                        <DateRange />
-                        <Months />
-                     </div>
-                  </div>
+
                   {children}
                </DataContextProvider>
             </ThemeProvider>

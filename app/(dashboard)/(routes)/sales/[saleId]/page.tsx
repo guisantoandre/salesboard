@@ -25,7 +25,7 @@ export default function SalePage({ params }: SalePageProps) {
    }
 
    return (
-      <div className="md:pl-64 mt-5">
+      <div className="my-20 md:my-0 md:pl-64">
          {loading && data === null && <Loading />}
 
          {data !== null && (
